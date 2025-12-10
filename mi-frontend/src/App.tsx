@@ -60,7 +60,8 @@ function App() {
   const [terminado, setTerminado] = useState(false)
 
   // Guardará todas sus respuestas
-  const [respuestasMarcadas, setRespuestasMarcadas] = useState([])
+  const [respuestasMarcadas, setRespuestasMarcadas] = useState<string[]>([])
+
 
   const preguntaActual = preguntas[index]
 
