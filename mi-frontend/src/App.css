@@ -1,42 +1,193 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* Fondo general */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Contenedor centrado */
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Tarjeta principal */
+.card {
+  background: #ffffffcc;
+  backdrop-filter: blur(10px);
+  padding: 40px;
+  width: 100%;
+  max-width: 560px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px #00000030;
   text-align: center;
+  animation: fadeIn 0.4s ease;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Títulos */
+h1 {
+  font-size: 26px;
+  margin-bottom: 30px;
+  color:rgb(0, 0, 0);
 }
 
-@keyframes logo-spin {
+.pregunta {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color:rgb(0, 0, 0);
+}
+
+/* Opciones */
+.opcion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff5f7;       
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+  border: 2px solid #ffb3c6; 
+}
+
+/* Hover más marcado */
+.opcion:hover {
+  border-color: #ff4571;
+  background: #ffd6e0;
+}
+
+/* Radio con color fuerte */
+.opcion input[type="radio"] {
+  transform: scale(1.3);
+  accent-color: #ff1e58;     
+}
+
+/* Texto más oscuro para que se lea bien */
+.opcion span {
+  font-weight: 600;
+  color: #b30033;
+}
+
+
+
+/* Botón */
+.btn {
+  width: 100%;
+  background: #ff3e6c;
+  color: white;
+  padding: 12px;
+  font-size: 18px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn:disabled {
+  background: #ff99b5;
+  cursor: not-allowed;
+}
+
+.btn:hover:not(:disabled) {
+  background: #d6336c;
+  transform: scale(1.02);
+}
+
+/* Final */
+.fin {
+  font-size: 24px;
+  color: #d6336c;
+}
+
+/* Animación */
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(10px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* ---------------------- */
+/*   🔥 RESPONSIVE 🔥    */
+/* ---------------------- */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 768px) {
+  .card {
+    padding: 30px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .pregunta {
+    font-size: 18px;
+  }
+
+  .btn {
+    font-size: 16px;
+    padding: 10px;
   }
 }
 
-.card {
-  padding: 2em;
+/* Celulares grandes */
+@media (max-width: 480px) {
+  .card {
+    padding: 25px;
+    border-radius: 15px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .pregunta {
+    font-size: 16px;
+  }
+
+  .opcion {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .opcion span {
+    font-size: 14px;
+  }
+
+  .btn {
+    font-size: 15px;
+    padding: 10px;
+  }
 }
 
-.read-the-docs {
-  color: #888;
+/* Celulares pequeños (iPhone SE, gamas bajas) */
+@media (max-width: 380px) {
+  .card {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  .pregunta {
+    font-size: 15px;
+  }
+
+  .btn {
+    font-size: 14px;
+  }
 }
+
