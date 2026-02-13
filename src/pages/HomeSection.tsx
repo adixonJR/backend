@@ -29,7 +29,7 @@ export default function HomeSection({ onStart }: HomeSectionProps) {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="home-subtitle"
         >
-          Explora cada sección... hay cosas lindas y divertidas.
+          Explora cada sección... hay cosas lindas y divertidas , estas lista ?
         </motion.p>
 
         <motion.div
@@ -39,9 +39,10 @@ export default function HomeSection({ onStart }: HomeSectionProps) {
           className="home-buttons"
         >
           <button className="btn btn-purple" onClick={onStart}>
+            
             Explorar
           </button>
-
+          
           <button className="btn btn-pink" onClick={onStart}>
             Divertirse
           </button>
