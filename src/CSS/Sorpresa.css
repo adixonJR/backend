@@ -303,10 +303,10 @@
     
   .san-timer-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    margin: 2rem 0;
   }
+  
   
   /* Caja del temporizador */
   .san-timer-box {
