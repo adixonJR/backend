@@ -301,14 +301,14 @@
     100% { transform: scale(1); }
   }
     
-
   .san-timer-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2rem;
     margin: 2rem 0;
   }
   
+  /* Caja del temporizador */
   .san-timer-box {
     background: linear-gradient(to bottom right, #fdf2f8, #ffe4e6);
     border-radius: 1.5rem;
@@ -317,16 +317,20 @@
     box-shadow: 0 10px 30px rgba(236, 72, 153, 0.25);
   }
   
+  /* Título */
   .san-timer-box h4 {
     margin-bottom: 0.8rem;
     color: #be185d;
     font-weight: 600;
+    font-size: 1.05rem;
   }
   
+  /* Contadores */
   .san-timer {
     display: flex;
     justify-content: center;
     gap: 1rem;
+    flex-wrap: wrap; /* 🔥 permite saltar de línea */
   }
   
   .san-timer span {
@@ -335,12 +339,40 @@
     padding: 0.5rem 0.9rem;
     border-radius: 999px;
     font-size: 0.95rem;
+    min-width: 80px; /* 🔥 evita que se deformen */
+    text-align: center;
     animation: pulseSoft 1.6s infinite;
   }
   
+  /* Animación */
   @keyframes pulseSoft {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
+  }
+  
+  /* 📱 TABLET */
+  @media (max-width: 768px) {
+    .san-timer-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  
+    .san-timer-box {
+      padding: 1.2rem;
+    }
+  
+    .san-timer-box h4 {
+      font-size: 1rem;
+    }
+  }
+  
+  /* 📱 MÓVIL */
+  @media (max-width: 480px) {
+    .san-timer span {
+      font-size: 0.85rem;
+      padding: 0.45rem 0.75rem;
+      min-width: 70px;
+    }
   }
   
