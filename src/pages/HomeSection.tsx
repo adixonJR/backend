@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import "../CSS/homeSection.css";
 
+type HomeSectionProps = {
+  onStart: () => void;
+};
 
-
-export default function Home() {
+export default function HomeSection({ onStart }: HomeSectionProps) {
   return (
     <div className="home-container">
       <motion.div
@@ -36,8 +38,13 @@ export default function Home() {
           transition={{ delay: 0.8, duration: 0.6 }}
           className="home-buttons"
         >
-          <button className="btn btn-purple">Explorar</button>
-          <button className="btn btn-pink">Divertirse</button>
+          <button className="btn btn-purple" onClick={onStart}>
+            Explorar
+          </button>
+
+          <button className="btn btn-pink" onClick={onStart}>
+            Divertirse
+          </button>
         </motion.div>
       </motion.div>
     </div>

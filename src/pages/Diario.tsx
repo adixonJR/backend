@@ -1,8 +1,14 @@
 import { useEffect, useState } from 'react';
 import '../CSS/Diario.css';
 
+type Entry = {
+  id: number;
+  text: string;
+  date: string;
+};
+
 export default function Diario() {
-  const [entries, setEntries] = useState<{ id: number; text: string; date: string }[]>(() => {
+  const [entries, setEntries] = useState<Entry[]>(() => {
     try {
       const raw = localStorage.getItem('miniweb_diario');
       return raw ? JSON.parse(raw) : [];
@@ -19,19 +25,30 @@ export default function Diario() {
 
   const add = () => {
     if (!text.trim()) return;
+
     setEntries(e => [
       { id: Date.now(), text, date: new Date().toLocaleString() },
       ...e,
     ]);
+
     setText('');
   };
 
-  const remove = (id: number) =>
+  const remove = (id: number) => {
     setEntries(e => e.filter(r => r.id !== id));
+  };
+
+  const clearAll = () => {
+    setEntries([]);
+  };
+
+  const copyText = (content: string) => {
+    navigator.clipboard.writeText(content);
+  };
 
   return (
     <section className="diario-section">
-      {/* ===== CONTENIDO BLOQUEADO ===== */}
+      {/* ===== CONTENIDO ===== */}
       <div className="diario-blur">
         <h2>Diario</h2>
 
@@ -43,18 +60,41 @@ export default function Diario() {
         />
 
         <div className="diario-buttons">
-          <button className="btn btn-purple">Guardar</button>
-          <button className="btn btn-clear">Borrar todo</button>
+          <button className="btn btn-purple" onClick={add}>
+            Guardar
+          </button>
+
+          <button className="btn btn-clear" onClick={clearAll}>
+            Borrar todo
+          </button>
         </div>
 
         <div className="diario-entries">
+          {entries.length === 0 && (
+            <p className="diario-empty">
+              Aún no hay recuerdos guardados 💗
+            </p>
+          )}
+
           {entries.map(en => (
             <div key={en.id} className="diario-entry">
               <div className="date">{en.date}</div>
-              <div>{en.text}</div>
+              <div className="text">{en.text}</div>
+
               <div className="entry-buttons">
-                <button className="btn btn-copy-small">Copiar</button>
-                <button className="btn btn-clear-small">Eliminar</button>
+                <button
+                  className="btn btn-copy-small"
+                  onClick={() => copyText(en.text)}
+                >
+                  Copiar
+                </button>
+
+                <button
+                  className="btn btn-clear-small"
+                  onClick={() => remove(en.id)}
+                >
+                  Eliminar
+                </button>
               </div>
             </div>
           ))}
@@ -65,7 +105,8 @@ export default function Diario() {
       <div className="diario-overlay">
         <h3>💗 Trabajando en esto</h3>
         <p>
-          Este diario está siendo preparado con amor.<br />
+          Este diario está siendo preparado con amor.
+          <br />
           Pronto podrás guardar recuerdos especiales ✨
         </p>
       </div>
