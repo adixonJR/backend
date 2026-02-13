@@ -1,0 +1,117 @@
+/* ===== RESET BÁSICO ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(180deg, #6d28d9, #4f46e5, #db2777);
+    min-height: 100vh;
+    color: #f9fafb;
+  }
+  
+  /* ===== CONTENEDOR PRINCIPAL ===== */
+  .app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* ===== HEADER ===== */
+  .app-header {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .app-title {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: linear-gradient(90deg, #f9a8d4, #a78bfa, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  /* ===== NAV ===== */
+  .app-nav {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-top: 0.8rem;
+  }
+  
+  /* ===== BOTONES DE NAV ===== */
+  .nav-btn {
+    padding: 0.45rem 1rem;
+    border-radius: 9999px;
+    border: none;
+    background: rgba(255, 255, 255, 0.12);
+    color: #f9fafb;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  
+  .nav-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+  }
+  
+  .nav-btn.active {
+    background: linear-gradient(45deg, #ec4899, #ec4899);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+  }
+  
+  /* ===== MAIN ===== */
+  .app-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 1.5rem 1rem;
+    flex: 1;
+  }
+  
+  .app-main > * {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+  }
+  
+  /* ===== FOOTER ===== */
+  .app-footer {
+    text-align: center;
+    padding: 1.2rem 1rem;
+    font-size: 0.85rem;
+    opacity: 0.85;
+  }
+  
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .app-header {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .app-nav {
+      justify-content: center;
+    }
+  
+    .app-title {
+      font-size: 1.8rem;
+    }
+  
+    .app-main > * {
+      padding: 1.2rem;
+    }
+  }
+  
