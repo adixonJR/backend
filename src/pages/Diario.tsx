@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, MessageCircle, Trash2, Copy, Plus, Users, Send } from "lucide-react";
+import { Heart, MessageCircle, Trash2, Copy, Send } from "lucide-react";
 
 type Entry = {
   id: number;
@@ -8,12 +8,6 @@ type Entry = {
   text: string;
   date: string;
   emoji?: string;
-};
-
-type Person = {
-  id: string;
-  name: string;
-  emoji: string;
 };
 
 const DEFAULT_PEOPLE = [
@@ -158,9 +152,7 @@ export default function Diario() {
             value={text}
             onChange={(e) => setText(e.target.value)}
             onKeyPress={(e) => {
-              if (e.key === "Enter" && e.ctrlKey) {
-                add();
-              }
+              if (e.key === "Enter" && e.ctrlKey) add();
             }}
             rows={mode === "diario" ? 4 : 2}
             placeholder={
@@ -205,7 +197,6 @@ export default function Diario() {
         transition={{ delay: 0.4 }}
         className="space-y-4"
       >
-        {/* HEADER */}
         <div className="flex items-center gap-3 mb-4">
           {mode === "chat" ? (
             <MessageCircle className="text-pink-500" size={28} />
@@ -220,7 +211,6 @@ export default function Diario() {
           </span>
         </div>
 
-        {/* MESSAGES/ENTRIES */}
         <div className={`space-y-4 ${mode === "chat" ? "max-h-[600px]" : "max-h-[500px]"} overflow-y-auto pr-2`}>
           <AnimatePresence mode="popLayout">
             {filteredEntries.length === 0 ? (
@@ -261,31 +251,20 @@ export default function Diario() {
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex-1">
-                      {/* AUTHOR */}
                       <div className="flex items-center gap-2 mb-2">
                         <span className="text-xl">{entry.emoji}</span>
-                        <span className="font-bold text-purple-700">
-                          {entry.author}
-                        </span>
-                        <span className="text-xs text-purple-600">
-                          {entry.date}
-                        </span>
+                        <span className="font-bold text-purple-700">{entry.author}</span>
+                        <span className="text-xs text-purple-600">{entry.date}</span>
                       </div>
-
-                      {/* TEXT */}
-                      <p className="text-purple-800 leading-relaxed break-words">
-                        {entry.text}
-                      </p>
+                      <p className="text-purple-800 leading-relaxed break-words">{entry.text}</p>
                     </div>
 
-                    {/* ACTIONS */}
                     <div className="flex gap-1 ml-2 flex-shrink-0">
                       <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                         onClick={() => copyText(entry.text)}
                         className="p-2 rounded-lg bg-white/40 text-purple-700 hover:bg-white/60 transition-all"
-                        title="Copiar"
                       >
                         <Copy size={18} />
                       </motion.button>
@@ -295,7 +274,6 @@ export default function Diario() {
                         whileTap={{ scale: 0.9 }}
                         onClick={() => remove(entry.id)}
                         className="p-2 rounded-lg bg-red-300/40 text-red-700 hover:bg-red-300/60 transition-all"
-                        title="Eliminar"
                       >
                         <Trash2 size={18} />
                       </motion.button>
@@ -317,24 +295,9 @@ export default function Diario() {
           className="mt-8 grid md:grid-cols-3 gap-4"
         >
           {[
-            {
-              label: "Para mí",
-              count: filteredEntries.filter(e => e.author === "Para mí").length,
-              emoji: "💖",
-              color: "pink",
-            },
-            {
-              label: "Para ti",
-              count: filteredEntries.filter(e => e.author === "Para ti").length,
-              emoji: "💕",
-              color: "blue",
-            },
-            {
-              label: "Nosotros",
-              count: filteredEntries.filter(e => e.author === "Nosotros").length,
-              emoji: "👥",
-              color: "purple",
-            },
+            { label: "Para mí", count: filteredEntries.filter(e => e.author === "Para mí").length, emoji: "💖", color: "pink" },
+            { label: "Para ti", count: filteredEntries.filter(e => e.author === "Para ti").length, emoji: "💕", color: "blue" },
+            { label: "Nosotros", count: filteredEntries.filter(e => e.author === "Nosotros").length, emoji: "👥", color: "purple" },
           ].map((stat) => (
             <motion.div
               key={stat.label}
@@ -342,9 +305,7 @@ export default function Diario() {
               className={`bg-${stat.color}-100/40 backdrop-blur-lg border-2 border-${stat.color}-200 p-6 rounded-2xl text-center`}
             >
               <div className="text-3xl mb-2">{stat.emoji}</div>
-              <p className={`text-${stat.color}-700 font-bold text-lg`}>
-                {stat.count}
-              </p>
+              <p className={`text-${stat.color}-700 font-bold text-lg`}>{stat.count}</p>
               <p className={`text-${stat.color}-600 text-sm`}>{stat.label}</p>
             </motion.div>
           ))}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { RotateCcw, Play, Trophy, Heart } from "lucide-react";
+import { RotateCcw, Play, Trophy } from "lucide-react";
 
 /* ===== COMPONENTE PRINCIPAL ===== */
 export default function Juegos() {
@@ -518,9 +518,7 @@ function Ahorcado() {
         <motion.div
           initial={{ scale: 0.8 }}
           animate={{ scale: 1 }}
-          className={`p-4 rounded-xl ${
-            won ? "bg-yellow-200" : "bg-red-300"
-          }`}
+          className={`p-4 rounded-xl ${won ? "bg-yellow-200" : "bg-red-300"}`}
         >
           <p className={`text-xl font-bold ${won ? "text-yellow-700" : "text-red-700"}`}>
             {won ? "¡Ganaste! 🎉" : `¡Perdiste! La palabra era: ${word}`}
@@ -559,20 +557,16 @@ function Colores() {
 
   useEffect(() => {
     if (!gameActive || time === 0) return;
-
     const timer = setTimeout(() => setTime((t) => t - 1), 1000);
     return () => clearTimeout(timer);
   }, [gameActive, time]);
 
   useEffect(() => {
-    if (time === 0) {
-      setGameActive(false);
-    }
+    if (time === 0) setGameActive(false);
   }, [time]);
 
   const guess = (idx: number) => {
     if (!gameActive) return;
-
     if (idx === current) {
       setScore((s) => s + 1);
       setCurrent(Math.floor(Math.random() * colors.length));
